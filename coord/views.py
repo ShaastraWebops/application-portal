@@ -54,9 +54,9 @@ def application(request, sub_dept_id = None):
     """
     subdept = SubDept.objects.get(id = sub_dept_id)
     can_apply = False
-    if subdept.first_yr_apps and request.user.username[2:5].lower().find("12b") != -1:
+    if subdept.first_yr_apps and request.user.username[2:5].lower().find("13b") != -1:
         can_apply = True
-    if subdept.non_first_yr_apps and request.user.username[2:5].lower().find("12b") == -1:
+    if subdept.non_first_yr_apps and request.user.username[2:5].lower().find("13b") == -1:
         can_apply = True
     
     try:

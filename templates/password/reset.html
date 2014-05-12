@@ -50,9 +50,7 @@
     </style>
 
     <script>
-    { %
-        for k, v in form.errors.items %
-    }
+    {% for k, v in form.errors.items %}
     $("form#password_reset_form #id_{{ k }}")
         .addClass("error")
         .popover({
@@ -63,8 +61,8 @@
                 return "{% for i in v %} {{i}} {% endfor %}"
             },
             "placement": "below",
-        }) { % endfor %
-    }
+        }) 
+    {% endfor %}
     </script>
 </body>
 
