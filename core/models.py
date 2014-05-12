@@ -21,6 +21,8 @@ class SubDept(models.Model):
     name        = models.CharField(max_length = 1000)
     impose_cgpa = models.BooleanField(default = True, help_text="This does not work, don't bother")
     close_apps  = models.BooleanField(default = False, help_text="Decides whether coord aspirants can apply for the Subdept or not")
+    first_yr_apps  = models.BooleanField(default = True, help_text="If ticked - 1st yr can apply")
+    non_first_yr_apps  = models.BooleanField(default = True, help_text="if not ticked - non 1st yr can apply")
 
     objects = SubDeptManager()
 
