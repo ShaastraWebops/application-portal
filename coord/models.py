@@ -20,10 +20,10 @@ class Answer(models.Model):
     answer   = models.TextField(blank = True)
 
     def __unicode__(self):
-        return str(self.answer)
+        return u'%s' % (self.answer)
     
     def get_short_content(self):
-        return "%s..." % str(self.answer[:10])
+        return u'%s...' % (self.answer[:10])
         
 
 class Credential(models.Model):
@@ -37,10 +37,10 @@ class Credential(models.Model):
     content = models.TextField(blank=True)
 
     def __unicode__(self):
-        return str(self.content)
+        return u'%s'% (self.content)
         
     def get_short_content(self):
-        return "%s..." % str(self.content[:10])
+        return u'%s...' % (self.content[:10])
         
 
 class Reference(models.Model):
@@ -54,10 +54,10 @@ class Reference(models.Model):
     content = models.TextField(blank=True)
 
     def __unicode__(self):
-        return str(self.content)
+        return u'%s' % (self.content)
         
     def get_short_content(self):
-        return "%s..." % str(self.content[:10])
+        return u'%s...' % (self.content[:10])
         
 
 class Application(models.Model):

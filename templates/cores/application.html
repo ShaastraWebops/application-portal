@@ -1,6 +1,10 @@
 {% extends "cores/base.html" %}
 {% block content %}
-<h4>Application for {{app.subdept}} submitted by {{app.user}}</h4>
+<script type="text/javascript" src="{{site_url}}static/js/sortable.js"></script>
+<script type="text/javascript" src="{{site_url}}static/js/moment.js"></script>
+<link rel="stylesheet" href="{{site_url}}static/css/sortable.css"  />
+
+<h4>Application for {{app.subdept}} submitted by {{app.user.first_name}} {{app.user.last_name}}</h4>
     {% if saved %}
      <h7> All changes saved successfully! </h7>
     {% endif %}
@@ -18,11 +22,23 @@
         <ol>
         {% for q in qna %}
         <li><strong>{{ q.0 }}</strong>
-        <p>{{ q.1 }}</p>
+        <p>{{ q.1|linebreaks }}</p>
         {{ q.2.as_table }}</li><hr>
         {% endfor %}
         </ol>
         <input type="submit" value="Save" class="btn btn-primary"/>
     </form>
+    <script>    
+
+
+        (function () {
+            
+            var $table = $('table');
+            $table.addClass("sortable")
+            
+            $table.on('sorted', function () { alert("Table was sorted."); });
+        }());
+    
+    </script>
         <a href="{% url core.views.submissions username=request.user subdept_id=app.subdept.id%}" class="btn">Back</a>
 {% endblock %}

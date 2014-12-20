@@ -187,7 +187,6 @@ def submissions(request,username=None,subdept_id=None):
         return redirect('core.views.core_dashboard',username=request.user)
     return render_to_response("cores/submissions.html",locals(), context_instance=RequestContext(request))
 
-
 @login_required
 @user_passes_test(lambda u: u.get_profile().is_core_of)
 def applicants(request,username=None,applicant=None):

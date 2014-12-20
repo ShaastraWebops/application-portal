@@ -31,13 +31,17 @@ def coord_home(request):
         apps = Application.objects.filter(user = request.user).exclude(preference = -1).order_by('preference')
     except:
         pass
+    form = SelectSubDeptForm()
     if request.method == "POST":
         form = SelectSubDeptForm(request.POST)
         if form.is_valid():
             name = str(form.cleaned_data['name']).split('| ')
             subdept = SubDept.objects.get(name = str(name[1]).strip())
+            names=['Hovercraft Making Workshop','Desmod','How Things Work', 'Gamedrome', 'Industrially Defined Problem Statement (IDP)','Shaastra Junior','Sustainable Cityscape', 'Project X']	
+            #if subdept.name in names:
             return redirect('coord.views.application', sub_dept_id=subdept.id)
-    form = SelectSubDeptForm()
+        else:
+            print "Form in invalid"
     return render_to_response("coord/home.html", locals(),context_instance=RequestContext(request))
 
 @login_required
@@ -49,6 +53,12 @@ def application(request, sub_dept_id = None):
     #TODO: Do no accept form if an answer is blank
     """
     subdept = SubDept.objects.get(id = sub_dept_id)
+    can_apply = False
+    if subdept.first_yr_apps and request.user.username[2:5].lower().find("13b") != -1:
+        can_apply = True
+    if subdept.non_first_yr_apps and request.user.username[2:5].lower().find("13b") == -1:
+        can_apply = True
+    
     try:
         inst = Instructions.objects.get(sub_dept = subdept)
     except:

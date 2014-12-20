@@ -1,61 +1,75 @@
 <html>
+
 <head>
-	<title>Application Portal</title>
-	<link rel="stylesheet" href="{{site_url}}static/css/bootstrap.min.css"  />
-	<link rel="stylesheet" href="{{site_url}}static/css/style.css"  />
+    <title>Application Portal</title>
+    <link rel="stylesheet" href="{{site_url}}static/css/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="{{site_url}}static/js/bootstrap.min.js" />
+    
+    <link rel="stylesheet" href="{{site_url}}static/css/style.css" />
     <link rel="shortcut icon" href="{{site_url}}static/img/favicon.ico">
 </head>
+
 <body>
-	<div id="wrapper" class="">
-    	<div id="header" class="navbar navbar-inverse navbar-static-top">
-        	<div class="navbar-inner">
-            	<div class="container">
-                	<a class="brand" href="{{site_url}}">Shaastra 2014 || Application Portal</a>
+    <div id="wrapper" class="">
+        <div id="header" class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{{site_url}}">Shaastra 2014 || Application Portal</a>
                     <div id="links" class="pull-right nav-collapse collapse">
-                    	<ul class="nav">
-                        	<li class=""><a href="{{site_url}}"><i class="icon-home icon-white"></i> Home</a></li>
-                            <li class="active"><a href="{{site_url}}accounts/register"><i class="icon-user icon-white"></i> Register</a></li>
+                        <ul class="nav">
+                            <li class=""><a href="{{site_url}}"><i class="icon-home icon-white"></i> Home</a>
+                            </li>
+                            <li class="active"><a href="{{site_url}}accounts/register"><i class="icon-user icon-white"></i> Register</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
         <div id="content" class="container">
-        	<div class="row-fluid">
-                <div class="span12 well" id="forms">
-                     {% if invalid_login %}
-						<span style="color:#9d261d">Invalid Login!</span>
-					{% endif %}
-                      <br/>
-                      {% if registered %}
-                      <h4><i class="icon-ok"></i> Registered Successfully!
-                          <a href="{{site_url}}">Proceed to Login</a></h4>
-                      {% else %}
-                      <h3>Register</h3>
-                            <form action="" method="POST">
-                              {%csrf_token%}
-                              {{ register_form.as_table }}
-                              <!-- Scripts for reCaptcha -> https://developers.google.com/recaptcha/docs/display -->
-                              <script type="text/javascript"
-                                  src="http://www.google.com/recaptcha/api/challenge?k=6Lf1ktUSAAAAALOtemzm08LVwHmfku6yXXCdrMJn">
-                              </script>
-                              <noscript>
-                                  <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Lf1ktUSAAAAALOtemzm08LVwHmfku6yXXCdrMJn"
-                                      height="250" width="450" frameborder="0"></iframe><br>
-                                  <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-                                  </textarea>
-                                  <input type="hidden" name="recaptcha_response_field"
-                                      value="manual_challenge">
-                              </noscript>
-                              {% if captcha_response != "" %}
-                                  <p class="errorlist">The words typed did not match the words in the image</p>
-                              {% endif %}<br>
-                              <input type="submit" value="Register" class="btn btn-primary"/>
-                            </form>
-                      {% endif %}
+            <div class="row-fluid">
+                <div class="span6 well" id="forms">
+                    {% if invalid_login %}
+                    <span style="color:#9d261d">Invalid Login!</span>
+                    {% endif %}
+                    <br/>{% if registered %}
+                    <h4><i class="icon-ok"></i> Registered Successfully!
+                        <a href="{{site_url}}">Proceed to Login</a>
+                    </h4>
+                    {% else %}
+                    <h3>Register</h3>
+                    <form action="" method="POST">
+                        {%csrf_token%} {{ register_form.as_table }}
+                        <!-- Scripts for reCaptcha -> https://developers.google.com/recaptcha/docs/display -->
+                        <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6Lf1ktUSAAAAALOtemzm08LVwHmfku6yXXCdrMJn">
+                        </script>
+                        <noscript>
+                            <iframe src="http://www.google.com/recaptcha/api/noscript?k=6Lf1ktUSAAAAALOtemzm08LVwHmfku6yXXCdrMJn" height="250" width="450" frameborder="0"></iframe>
+                            <br>
+                            <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                            </textarea>
+                            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                        </noscript>
+                        {% if captcha_response != "" %}
+                        <p class="errorlist">The words typed did not match the words in the image</p>
+                        {% endif %}
+                        <br>
+                        <input type="submit" value="Register" class="btn btn-primary" />
+                    </form>
+                    {% endif %}
                 </div>
+
+                <div class="span6 well" data-affix="top">
+                    {% include "instructions.html" %}
+                    <br /><br /><br /><br />
+                    {% include "social.html" %}
+                          
+                </div>
+
             </div>
         </div>
     </div>
 </body>
+
 </html>

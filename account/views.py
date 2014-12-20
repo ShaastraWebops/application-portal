@@ -31,7 +31,7 @@ def login(request):
                 return redirect('coord.views.coord_home')
         invalid_login = True
         login_form = LoginForm()
-        return render_to_response('account/login.html', locals(), context_instance=RequestContext(request))
+        return render_to_response('index.html', locals(), context_instance=RequestContext(request))
     else:
         if request.user.is_authenticated():
             if request.user.get_profile().is_core_of:
@@ -40,7 +40,7 @@ def login(request):
                 return redirect('coord.views.coord_home')
         else:
             login_form = LoginForm()
-        return render_to_response('account/login.html', locals(), context_instance=RequestContext(request))
+        return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
 def register(request):
     """
@@ -71,7 +71,9 @@ def register(request):
                                           room_no = data['room_no'],
                                           hostel  = data['hostel'],
                                           cgpa    = data['cgpa'],
-                                          ph_no   = data['ph_no'],)
+                                          ph_no   = data['ph_no'],
+                                          city    = data['city'],
+                                          summer_location = data['summer_location'],)
                 new_profile.save()
                 registered = True
         else:

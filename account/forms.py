@@ -27,7 +27,7 @@ class EditUserProfileForm(forms.ModelForm):
     
     class Meta:
         model = UserProfile
-        exclude = ('user', 'is_core_of')    
+        exclude = ('user', 'is_core_of')   
 
     def clean_first_name(self):
         """

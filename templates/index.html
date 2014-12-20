@@ -1,103 +1,61 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Application Portal</title>
-        <link rel="stylesheet" href="{{site_url}}static/css/bootstrap.min.css"  />
-        <link rel="stylesheet" href="{{site_url}}static/css/style.css"  />
-        <link rel="shortcut icon" href="{{site_url}}static/img/favicon.ico">
-    </head>
-    <body>
-        <div id="wrapper" class="">
-            <div id="header" class="navbar navbar-inverse navbar-static-top">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a href="http://www.shaastra.org"><img class="pull-left" src="{{site_url}}static/img/slogo2.png" width=60px height=60px></a>
-                        <a class="brand" style='color:white'>&nbsp;  Application Portal</a>
-                        <div id="links" class="pull-right nav-collapse collapse">
-                            <ul class="nav">
-                                <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-                                <li><a href="{{site_url}}accounts/register/"><i class="icon-user icon-white"></i> Register</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="content" class="container">
-                <div class="row-fluid">
-                    <div class="span8 well">
-                        <u><center><h4>Instructions and Regulations</h4></center></u>
-                        {% for a in announcements %}
-                        <p> {{ a|safe }}
-                        {% endfor %}
-                        <h5> General </h5>
-                        <ul>
-                        <li> Contact Details of Previous years' Coordinators <a href = "http://shaastra.org/2013/main/shaastra_coords.zip">Download</a>
-                        <li>Contact Details of the Envisage team 2013<a href = "http://shaastra.org/2013/main/envisage.zip">Download</a>
-                        <li> Keep a photocopy of your <strong>Grade card</strong> for your interview.
-                        <li> Deadline is Friday, 26th April, 10 pm.
-                            </ul>
+<html>
 
-                            <h5> WebOps </h5>
-                            <ul><li> 
-                            <b> Problem Statements <a href="http://www.shaastra.org/2013/main/shaastra_ps.zip">Download</a>
-                            </b>
-                            <li> Also, fill out the Google Form circulated in the smail.
-                            </ul>
-                        <h5> Finance</h5>
-                            <ul>
-                            <li> Finance Department has released application for PPM and Sales Department too.
-                            <li>Deadline - 10 p.m. 27th April,2013
-                            </ul>
-                        <h5> Facilities</h5>
-                            <ul>
-                            <li>Selection for GA, Equipment, Catering, Insight, Facilities Strategist,Facilities Supercoord and VIP Care will happen this semester.
-                            <li>Selection for Production team will happen next semester.
-                            </ul>
-                        <h5> Design</h5>
-                            <ul>
-                            <li><u>Graphic Design, Creative Design</u>
-                            <li>Make some poster and t-shirt designs for the interview.
-                            <li>Get your portfolio (if any) to the interview in a pendrive.
-                            <li><u>Editing & Vfx, Photography : </u>
-                            <li>Get your portfolio (if any) to the interview in a pendrive.
-                            <li><u>Ambience :</u>
-                            <li>Come up with new ideas on ambience projects to be made
-                            </ul>
-                        <h5>Student Relations</h5>
-                            <ul>
-                            <li>Student Relations Coordinators: Open for 2nd years with prior experience in either the publicity team or the    hospitality team.
-                            <li>Student Relations Outreach: Open for 1st and 2nd years and selection will depend on your region of stay during summer and winter.
-                            <li>Student Relations Deputy Coordinators: Open for all 1st years. 
-                            </ul>
-                        <br><br>
-                        <li>Like us, Follow us and Proceed to join us! :) <br><br><br></li>
-                        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com/Shaastra&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:80px;" allowTransparency="true"></iframe><style>.fbook{position: absolute; font-color:#ddd; top:-1668px; font-size:10;}</style></style><a href="http://www.howtoaddlikebutton.com" class="fbook">test image</a><style>.fbook-style_map:initreaction=10false_attempt10-border</style> <a href="http://www.kosmetikstudio-hamburg.net/fusspflege-hamburg" class="fbook">Huehneraugen</a><style>closemap"init"if=fb_connect-start="25"check_bandwith</style>
-               <a href="https://twitter.com/Shaastra_IITM" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @Shaastra</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </div>
+<head>
+    <title>Appllcation Portal</title>
+    <link rel="stylesheet" href="{{site_url}}static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{site_url}}static/css/style.css" />
+    <link rel="shortcut icon" href="{{site_url}}static/img/favicon.ico">
+</head>
 
-                    <div class="span4 well" id="login">
-                        <h4>Login:</h4>
-                        <form action="{{site_url}}accounts/login/" method="POST" class="form span12">
-
-                            {% csrf_token %}
-                            <div class="control-group">
-                                <label class="span3 control-label">Roll No</label>
-                                <input type="text" id="id_username" name="username" placeholder="Roll No" class="span8">
-                            </div>
-                            <div class="control-group">
-                                <label class="span3 control-label">Password</label>
-                                <input type="password" id="id_password" name="password" placeholder="Password" class="span8">
-                            </div>
-                            <div class="control-group">
-                                <input id="submit" value="Login" class="btn btn-primary" type="submit">
-                            </div>
-                        </form>
+<body>
+    <div id="wrapper" class="">
+        <div id="header" class="navbar navbar-inverse navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{{site_url}}">Shaastra 2014 || Appplication Portal</a>
+                    <div id="links" class="pull-right nav-collapse collapse">
+                        <ul class="nav">
+                            <li class=""><a href="{{site_url}}">Home</a>
+                            </li>
+                            <li class=""><a href="{{site_url}}accounts/register">Register</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+        <div id="content" class="container">
+            <div class="row-fluid">
+                <div class="span4 offset4 well" id="login">
+                    {% if invalid_login %}
+                    <span style="color:#9d261d">Invalid Login!</span>
+                    {% endif %}
+                    <h4>Login:</h4>
+                    <form action="{{site_url}}accounts/login/" method="POST" class="form span12">
+
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <label class="span3 control-label">Roll No</label>
+                            <input type="text" id="id_username" name="username" placeholder="Roll No" class="span8">
+                        </div>
+                        <div class="control-group">
+                            <label class="span3 control-label">Password</label>
+                            <input type="password" id="id_password" name="password" placeholder="Password" class="span8">
+                        </div>
+                        <div class="control-group">
+                            <div class="span6"><input id="submit" value="Login" class="btn btn-primary" type="submit"></div>
+                            <div class="span6"><a id="forgot_password" class="btn btn-small btn-primary" href="{{site_url}}password_reset/">Forgot Password </a></div>
+                        </div>
+                    </form>
+
+                    {% include "social.html" %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="{{site_url}}js/jquery-1.6.2.js"></script>
+</body>
 
 </html>

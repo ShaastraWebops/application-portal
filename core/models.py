@@ -5,6 +5,12 @@ from django.db import models
 from account.models import DEPT_CHOICES
 
 
+class SubDeptManager(models.Manager):
+    def all(self):
+                return self.filter(close_apps=False)
+
+
+
 class SubDept(models.Model):
     """
       Each department under Shaastra has sub-departments.
@@ -13,14 +19,19 @@ class SubDept(models.Model):
     """
     dept        = models.CharField(max_length = 40, choices = DEPT_CHOICES)
     name        = models.CharField(max_length = 1000)
-    impose_cgpa = models.BooleanField(default = True)
-    close_apps  = models.BooleanField(default = False)
+    impose_cgpa = models.BooleanField(default = True, help_text="This does not work, don't bother")
+    close_apps  = models.BooleanField(default = False, help_text="Decides whether coord aspirants can apply for the Subdept or not")
+    first_yr_apps  = models.BooleanField(default = True, help_text="If ticked - 1st yr can apply")
+    non_first_yr_apps  = models.BooleanField(default = True, help_text="if not ticked - non 1st yr can apply")
+
+    objects = SubDeptManager()
 
     def __unicode__(self):
         return "%s | %s " %(self.dept,self.name)
 
     def get_short_name(self):
         return self.name
+
 
 class Question(models.Model):
     """
